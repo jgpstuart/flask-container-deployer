@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Container Started</title>
+    </head>
+    <body>
+        <p>Your container has been started.</p>
+
+        
+        <!doctype html>
+        {% if deleteTime %}
+        <h1>Your container has been created.  <b>The container will be deleted at {{ deleteTime }}!</b></h1>
+        <h1>IP address: {{ hostName }}</h1>
+        <h1>Port: {{ port }}</h1>
+        {% else %}
+        <h1>Error: your container was not created.  Try again or contact CTF admins on Discord.</h1>
+        {% endif %}
+
+
+    </body>
+</html>
