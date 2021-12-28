@@ -146,7 +146,7 @@ def startContainer():
             port = getPort()
 
             # run the container
-            container = dockerClient.containers.run(containerName, ports={containerPort:port}, detach=True)
+            container = dockerClient.containers.run(containerName, ports={containerPort:port}, detach=True, privileged=True)
 
             # get the conatiner ID for the database
             containerID =  container.id
