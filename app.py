@@ -25,6 +25,7 @@ import sqlite3 as sql
 import os
 import random
 import docker
+import socket
 
 
 ###############################################################################
@@ -82,6 +83,12 @@ def insert_db(query, args=()):
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 
+# get the IP address of the host
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+s.connect(("8.8.8.8", 80))
+hostIP = s.getsockname()[0]
+s.close()
+
 # the docker client object, used to interact with docker on your system
 dockerClient = docker.from_env()
 
@@ -126,7 +133,7 @@ def startContainer():
     timePrint = now.strftime("%H:%M")
 
     # get the IP address of the requester
-    ipAddr = request.access_route[-1]
+    ipAddr = flask.request.access_route[-1]
 
     # add "containerTTL" minute(s) to current time, this is the destroy time
     deleteTime = now + timedelta(minutes=containerTTL)
@@ -155,4 +162,4 @@ def startContainer():
             insert_db("INSERT INTO ips (ip, port, containerID, time) VALUES (?,?,?,?)", [ipAddr, port, containerID, deleteTime])
 
             # return the start page with the 
-            return flask.render_template("startContainer.html", deleteTime=deleteTime, hostName=ipAddr, port=port)
+            return flask.render_template("startContainer.html", deleteTime=deleteTime, clientIP=ipAddr, hostName=hostIP, port=port)
