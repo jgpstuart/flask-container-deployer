@@ -3,8 +3,8 @@ Description=Gunicorn instance to serve containerDeploy
 After=network.target
 
 [Service]
-User=root
-Group=root
+User=deployer
+Group=www-data
 WorkingDirectory=/root/flask-container-deployer-main
 ExecStart=gunicorn --workers 3 --bind unix:containerDeploy.sock -m 007 wsgi:app
 
