@@ -126,7 +126,7 @@ def startContainer():
     timePrint = now.strftime("%H:%M")
 
     # get the IP address of the requester
-    ipAddr = flask.request.remote_addr
+    ipAddr = request.access_route[-1]
 
     # add "containerTTL" minute(s) to current time, this is the destroy time
     deleteTime = now + timedelta(minutes=containerTTL)
@@ -155,4 +155,4 @@ def startContainer():
             insert_db("INSERT INTO ips (ip, port, containerID, time) VALUES (?,?,?,?)", [ipAddr, port, containerID, deleteTime])
 
             # return the start page with the 
-            return flask.render_template("startContainer.html", deleteTime=deleteTime, hostName=hostName, port=port)
+            return flask.render_template("startContainer.html", deleteTime=deleteTime, hostName=ipAddr, port=port)

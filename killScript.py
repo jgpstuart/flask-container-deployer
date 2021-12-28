@@ -1,10 +1,12 @@
+#!/usr/bin/python3
+
 import sys
 from datetime import datetime
 import sqlite3 as sql
 import docker
 
 def query_db(query, args=(), one=False):
-    con = sql.connect("/home/jer/Documents/flaskTest/database.db")
+    con = sql.connect("/home/deployer/flask-container-deployer-main/database.db")
     cur = con.cursor()
     cur.execute(query, args)
     rv = cur.fetchall()
@@ -12,7 +14,7 @@ def query_db(query, args=(), one=False):
     return(rv[0] if rv else None) if one else rv
 
 def edit_db(query, args=()):
-    conn = sql.connect("/home/jer/Documents/flaskTest/database.db")
+    conn = sql.connect("/home/deployer/flask-container-deployer-main/database.db")
     cur = conn.cursor()
     cur.execute(query, args)
     conn.commit()
