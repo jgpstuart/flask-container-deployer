@@ -40,8 +40,11 @@ import socket
 # how long the container will run
 containerTTL = 10
 
-# name of the container you're going to run
-containerName = "overflow3"
+# get the name of the container you're going to run from an env variable
+if os.getenv("CONTAINER_NAME"):
+    containerName = os.getenv("CONTAINER_NAME")
+else:
+    conatinerName = "deployContainer"
 
 # port the container is listening on
 containerPort = 8754
