@@ -97,7 +97,7 @@ if os.path.exists("database.db"):
 conn = sql.connect("database.db")
 
 # create the table in the database
-conn.execute("CREATE TABLE IPS (ip TEXT, port INTEGER, containerID TEXT, time TEXT)")
+conn.execute("CREATE TABLE IF NOT EXSISTS IPS (ip TEXT, port INTEGER, containerID TEXT, time TEXT)")
 
 # gets a port between 49152-65535 and makes sure it's not already in the database
 def getPort():
