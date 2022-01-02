@@ -44,7 +44,7 @@ containerTTL = 10
 if os.getenv("CONTAINER_NAME"):
     containerName = os.getenv("CONTAINER_NAME")
 else:
-    conatinerName = "deployContainer"
+    containerName = "deployContainer"
 
 # port the container is listening on
 containerPort = 8754
