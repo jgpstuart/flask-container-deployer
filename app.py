@@ -46,9 +46,6 @@ containerName = "overflow3"
 # port the container is listening on
 containerPort = 8754
 
-# the ip address of the host, the user will use this to connect to the container
-hostName = "8.8.8.8"
-
 
 ###############################################################################
 #
