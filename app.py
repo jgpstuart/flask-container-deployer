@@ -70,6 +70,7 @@ def query_db(query, args=(), one=False):
     cur.execute(query, args)
     rv = cur.fetchall()
     cur.close()
+    con.close()
     return(rv[0] if rv else None) if one else rv
 
 # method to insert rows into the database
@@ -107,6 +108,7 @@ conn = sql.connect("database.db")
 
 # create the table in the database
 conn.execute("CREATE TABLE IF NOT EXISTS IPS (ip TEXT, port INTEGER, containerID TEXT, time TEXT)")
+conn.close()
 
 # gets a port between 49152-65535 and makes sure it's not already in the database
 def getPort():
