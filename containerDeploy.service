@@ -5,7 +5,7 @@ After=network.target
 [Service]
 User=deployer
 Group=www-data
-EnvironmentFile=/home/deployer/flask-container-deployer-main/gunicon-vars
+EnvironmentFile=/home/deployer/flask-container-deployer-main/gunicorn-vars
 WorkingDirectory=/home/deployer/flask-container-deployer-main
 ExecStart=gunicorn --workers 3 --bind unix:containerDeploy.sock -m 007 wsgi:app
 
