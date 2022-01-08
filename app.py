@@ -46,6 +46,12 @@ if os.getenv("CONTAINER_NAME"):
 else:
     container_name = "no_container_env_set"
 
+# get the public IP address of the AWS EC2 conatiner
+if os.getenv("IP_ADDR"):
+    hostIP = os.getenv("IP_ADDR")
+else:
+    hostIP = "no IP addr"
+
 # port the container is listening on
 containerPort = 22
 
@@ -84,10 +90,10 @@ app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 
 # get the IP address of the host
-s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-s.connect(("8.8.8.8", 80))
-hostIP = s.getsockname()[0]
-s.close()
+#s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+#s.connect(("8.8.8.8", 80))
+#hostIP = s.getsockname()[0]
+#s.close()
 
 # the docker client object, used to interact with docker on your system
 dockerClient = docker.from_env()
