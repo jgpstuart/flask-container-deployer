@@ -10,7 +10,7 @@
         <!doctype html>
         {% if deleteTime %}
         <h1>Your container has been created.  <b>The container will be deleted at {{ deleteTime }}!</b></h1>
-        <h1>Connect with: nc {{ hostName }} {{ port }}</h1>
+        <h1>Connect with: ssh USERNAME@{{ hostName }} -p {{ port }}</h1>
         <h1>Your IP address ({{ clientIP }}) has been recorded and you will not be able to start another container for 10 minutes!</h1>
         {% else %}
         <h1>Error: your container was not created.  Try again or contact CTF admins on Discord.</h1>

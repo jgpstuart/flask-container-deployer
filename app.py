@@ -47,7 +47,7 @@ else:
     container_name = "no_container_env_set"
 
 # port the container is listening on
-containerPort = 8754
+containerPort = 22
 
 
 ###############################################################################
