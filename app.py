@@ -37,14 +37,14 @@ import socket
 #
 ###############################################################################
 
-# how long the container will run
+# how long the container will run in minutes
 containerTTL = 10
 
 # get the name of the container you're going to run from an env variable
 if os.getenv("CONTAINER_NAME"):
-    containerName = os.getenv("CONTAINER_NAME")
+    container_name = os.getenv("CONTAINER_NAME")
 else:
-    containerName = "deployContainer"
+    container_name = "no_container_env_set"
 
 # port the container is listening on
 containerPort = 8754
@@ -153,7 +153,7 @@ def startContainer():
             port = getPort()
 
             # run the container
-            container = dockerClient.containers.run(containerName, ports={containerPort:port}, detach=True, privileged=True)
+            container = dockerClient.containers.run(image=container_name, ports={containerPort:port}, detach=True, privileged=True)
 
             # get the conatiner ID for the database
             containerID =  container.id
