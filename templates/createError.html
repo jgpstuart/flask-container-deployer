@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Create Error</title>
-        <link rel="stylesheet" href="../css/style.css">
+        <title>Error</title>
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
         <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Play&display=swap" rel="stylesheet"> 
     </head>
-    <body>
-        <script defer src="../js/script.js"></script> 
+    <body class="flexbox">
+        <script defer src="{{ url_for('static',filename='js/script.js') }}"></script> 
         <canvas>
         </canvas>
-        <p>It appears your IP address - <b>{{ ipAddr }}</b> - already has a container started.  If you believe this is an error, please contact the CTF admins.  Otherwise, wait until your container is killed (10 minutes) and try again.</p>
+        <p>It appears your IP address - <b>{{ ipAddr }}</b> - already has a container started.  If you believe this is an error, please open a ticket in the CTF Discord server.  Otherwise, wait until your container is killed (10 minutes) and try again.</p>
     </body>
 </html>
