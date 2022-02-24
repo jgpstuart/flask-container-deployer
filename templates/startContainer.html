@@ -2,13 +2,13 @@
 <html>
     <head>
         <title>Container Started</title>
-        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
         <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Play&display=swap" rel="stylesheet"> 
     </head>
-    <body>
-        <script defer src="../js/script.js"></script> 
+    <body class="flexbox">
+        <script defer src="{{ url_for('static',filename='js/script.js') }}"></script> 
         <canvas>
         </canvas>
         <p>Your container has been started.</p>
@@ -16,11 +16,16 @@
         
         <!doctype html>
         {% if deleteTime %}
-        <h1>Your container has been created.  <b>The container will be deleted at {{ deleteTime }}!</b></h1>
-        <h1>Connect with: ssh USERNAME@{{ hostName }} -p {{ port }}</h1>
-        <h1>Your IP address ({{ clientIP }}) has been recorded and you will not be able to start another container for 10 minutes!</h1>
+        <break></break>
+        <br />
+        <h1>Your container has been created.  <b>The container will be deleted at {{ deleteTime }} MST!</b></h1>
+        <h1>Connect with: ssh {{ ssh_username }}@{{ hostName }} -p {{ port }}</h1>
+        <h1>The password is: {{ ssh_password }}</h1>
+        <h1>Good luck Flag Hunter!</h1>
+        <break></break>
+        <h3>Your IP address ({{ clientIP }}) has been recorded and you will not be able to start another container for 10 minutes!</h3>
         {% else %}
-        <h1>Error: your container was not created.  Try again or contact CTF admins on Discord.</h1>
+        <h1>Error: your container was not created.  Try again or open a ticket to the Admins on the CTF Discord Server.</h1>
         {% endif %}
 
 

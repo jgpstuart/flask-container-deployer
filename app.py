@@ -52,6 +52,16 @@ if os.getenv("IP_ADDR"):
 else:
     hostIP = "no IP addr"
 
+if os.getenv("SSH_USERNAME"):
+    ssh_username = os.getenv("SSH_USERNAME")
+else:
+    ssh_user = "no_username_set"
+
+if os.getenv("SSH_PASSWORD"):
+    ssh_password = os.getenv("SSH_PASSWORD")
+else:
+    ssh_password = "no_password_set"
+
 # port the container is listening on
 containerPort = 22
 
@@ -138,7 +148,6 @@ def startContainer():
     
     # get the current time and convert to string
     now = datetime.now()
-    timePrint = now.strftime("%H:%M")
 
     # get the IP address of the requester
     ipAddr = flask.request.access_route[-1]
@@ -161,13 +170,17 @@ def startContainer():
             port = getPort()
 
             # run the container
-            container = dockerClient.containers.run(image=container_name, ports={containerPort:port}, detach=True, privileged=True)
+            container = dockerClient.containers.run(image=container_name, ports={containerPort:port}, detach=True, privileged=True, mem_limit="75m", pids_limit=25)
 
             # get the conatiner ID for the database
             containerID =  container.id
+
+            # adjust the deletion time from UTC to MST
+            mstTime = now - timedelta(hours=6, minutes=50)
+            adjustedTime = mstTime.strftime("%H:%M")
 
             # insert the user's ip address, port, containerID, time into the DB
             insert_db("INSERT INTO ips (ip, port, containerID, time) VALUES (?,?,?,?)", [ipAddr, port, containerID, deleteTime])
 
             # return the start page with the 
-            return flask.render_template("startContainer.html", deleteTime=deleteTime, clientIP=ipAddr, hostName=hostIP, port=port)
+            return flask.render_template("startContainer.html", deleteTime=adjustedTime, clientIP=ipAddr, hostName=hostIP, port=port, ssh_password=ssh_password, ssh_username=ssh_username)

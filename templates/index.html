@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>PAGE TITLE HERE</title>
-        <link rel="stylesheet" href="../css/style.css">
+        <title>Flag Hunters Portal</title>
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Play&display=swap" rel="stylesheet"> 
     </head>
     <body class="flexbox">
-        <script defer src="../js/script.js"></script> 
+        <script defer src="{{ url_for('static',filename='js/script.js') }}"></script> 
         <canvas>
         </canvas>
         <p>Get Hacking</p>
