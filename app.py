@@ -55,7 +55,7 @@ else:
 if os.getenv("SSH_USERNAME"):
     ssh_username = os.getenv("SSH_USERNAME")
 else:
-    ssh_user = "no_username_set"
+    ssh_username = "no_username_set"
 
 if os.getenv("SSH_PASSWORD"):
     ssh_password = os.getenv("SSH_PASSWORD")
