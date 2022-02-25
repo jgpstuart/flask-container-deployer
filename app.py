@@ -52,15 +52,17 @@ if os.getenv("IP_ADDR"):
 else:
     hostIP = "no IP addr"
 
+# get the username to ssh with
 if os.getenv("SSH_USERNAME"):
     ssh_username = os.getenv("SSH_USERNAME")
 else:
-    ssh_username = "no_username_set"
+    ssh_username = "magpie"
 
+# get the ssh password
 if os.getenv("SSH_PASSWORD"):
     ssh_password = os.getenv("SSH_PASSWORD")
 else:
-    ssh_password = "no_password_set"
+    ssh_password = "keyissecret"
 
 # port the container is listening on
 containerPort = 22
